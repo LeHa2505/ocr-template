@@ -1,0 +1,7 @@
+[
+    {"id": "name", "bbox": [387, 392, 634, 447], "filter_keywords": ["name"]},
+    {"id": "mssv", "bbox": [853, 399, 1014, 455], "filter_keywords": ["mssv"]},
+    {"id": "birthday", "bbox": [275, 450, 445, 498], "filter_keywords": ["birthday"]},
+    {"id": "dict", "bbox": [846, 435, 1078, 498], "filter_keywords": ["dict"]},
+    {"id": "family", "bbox": [131, 529, 1309, 625], "filter_keywords": ["family"]}
+]
