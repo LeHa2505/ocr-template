@@ -1,0 +1,2 @@
+sanic==23.6.0
+pytesseract==0.3.10
