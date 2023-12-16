@@ -13,7 +13,7 @@ import imutils
 
 
 def cleanup_text(text):
-    return "".join([c if ord(c) < 128 else "" for c in text]).strip()
+	return "".join([c if ord(c) < 128 else "" for c in text]).strip()
 
 my_bp = Blueprint('my_blueprint')
 
@@ -147,6 +147,11 @@ async def ocr_document(request: Request):
 			cv2.waitKey(0)
 
 		# Return the OCR results
-		return response.json({"success": True, "results": results})
+		# Tạo dictionary mới
+		new_results = {}
+		# Lặp qua mỗi cặp key-value trong dictionary cũ
+		for key, value in results.items():
+			new_results[key] = value[0]
+		return response.json({"success": True, "results": new_results})
 	except Exception as e:
 		return response.json({"success": False, "error": str(e)})
