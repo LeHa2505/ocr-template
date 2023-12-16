@@ -32,8 +32,8 @@ def load_template_and_config(doc_type):
 	try:
 		if doc_type == 1:
 			label = 'invoice_1'
-			template_folder = f'templates/invoices/{label}'
-			config_folder = f'classified/invoices/{label}'
+			template_folder = f'templates/invoices'
+			config_folder = f'classified/invoices'
 
 			# Load template image
 			template_image_path = os.path.join(template_folder, label + '.png')
