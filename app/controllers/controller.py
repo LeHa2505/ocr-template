@@ -9,6 +9,7 @@ import numpy as np
 import cv2
 import json
 import os
+import imutils
 
 
 def cleanup_text(text):
@@ -87,7 +88,7 @@ async def ocr_document(request: Request):
 
 			print("[Info] OCR'ing document...")
 			parsingResults = []
-
+			OCR_Locations = config_data
 			for loc in OCR_Locations:
 				bbox = loc["bbox"]
 				(x, y, w, h) = bbox
