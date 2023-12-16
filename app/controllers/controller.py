@@ -130,14 +130,14 @@ async def ocr_document(request: Request):
 				print("=" * len(loc["id"]))
 				print("{}\n\n".format(text))
 
-				(x, y, w, h) = loc["bbox"]
+				(x, y, x2, y2) = loc["bbox"]
 				clean = cleanup_text(text)
 
-				cv2.rectangle(aligned, (x, y), (x+w, y+h), (0, 255, 0), 2)
+				cv2.rectangle(aligned, (x, y), (x2, y2), (0, 255, 0), 2)
 
 				for (i, line) in enumerate(clean.split("\n")):
-					startY = y + (i * 70) + 40
-					cv2.putText(aligned, line, (x, startY), cv2.FONT_HERSHEY_SIMPLEX, 1.8, (0, 0, 255), 5)
+					startY = y + (i * 50) + 40  # Điều chỉnh khoảng cách giữa các dòng và kích thước của chữ
+					cv2.putText(aligned, line, (x, startY), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)  # Thay đổi tham số fontScale và thickness
 
 			cv2.imwrite("input.jpg", imutils.resize(image))
 			cv2.imwrite("Output.jpg", imutils.resize(aligned))
