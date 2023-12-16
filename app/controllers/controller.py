@@ -145,12 +145,8 @@ async def ocr_document(request: Request):
 			# cv2.imshow("Input", imutils.resize(image))
 			# cv2.imshow("Output", imutils.resize(aligned))
 			cv2.waitKey(0)
-			return response.text('Done')
-
-			# Perform OCR
-			# ...
 
 		# Return the OCR results
-		return response.json({"success": True, "results": ocr_results})
+		return response.json({"success": True, "results": results})
 	except Exception as e:
 		return response.json({"success": False, "error": str(e)})
