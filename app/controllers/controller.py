@@ -1,6 +1,15 @@
 # this is our 'controller.py' file
 from sanic import response
 from sanic import Blueprint
+from sanic.request import Request
+import app.services.align_images
+import pytesseract
+import cv2
+import json
+
+
+def cleanup_text(text):
+    return "".join([c if ord(c) < 128 else "" for c in text]).strip()
 
 my_bp = Blueprint('my_blueprint')
 
@@ -9,39 +18,39 @@ from io import BytesIO
 from PIL import Image
 
 def download_image_from_url(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+	try:
+		response = requests.get(url)
+		response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
 
-        image = Image.open(BytesIO(response.content))
-        return image
-    except Exception as e:
-        print(f"Error downloading image from URL: {e}")
-        return None
+		image = Image.open(BytesIO(response.content))
+		return image
+	except Exception as e:
+		print(f"Error downloading image from URL: {e}")
+		return None
 
 def load_template_and_config(doc_type):
-    try:
-        if doc_type == 1:
-            label = 'invoice_1'
-            template_folder = f'templates/invoices/{label}'
-            config_folder = f'classified/invoices/{label}'
+	try:
+		if doc_type == 1:
+			label = 'invoice_1'
+			template_folder = f'templates/invoices/{label}'
+			config_folder = f'classified/invoices/{label}'
 
-            # Load template image
-            template_image_path = os.path.join(template_folder, label + '.png')
-            template_image = cv2.imread(template_image_path)
+			# Load template image
+			template_image_path = os.path.join(template_folder, label + '.png')
+			template_image = cv2.imread(template_image_path)
 
-            # Load config from JSON file
-            config_file_path = os.path.join(config_folder, label + '.json')
-            with open(config_file_path, 'r') as config_file:
-                config_data = json.load(config_file)
+			# Load config from JSON file
+			config_file_path = os.path.join(config_folder, label + '.json')
+			with open(config_file_path, 'r') as config_file:
+				config_data = json.load(config_file)
 
-            return template_image, config_data
+			return template_image, config_data
 
-        # Handle other doc_types if needed
+		# Handle other doc_types if needed
 
-    except Exception as e:
-        print(f"Error loading template and config: {e}")
-        return None, None
+	except Exception as e:
+		print(f"Error loading template and config: {e}")
+		return None, None
 
 @my_bp.route('/my_bp')
 def my_bp_func(request):
@@ -54,14 +63,14 @@ def my_bp_func(request):
 
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
-    try:
-        data = request.json
-        doc_type = data.get('type')
-        image_url = data.get('image_url')
+	try:
+		data = request.json
+		doc_type = data.get('type')
+		image_url = data.get('image_url')
 
-        # Load template image based on doc_type from your database
-        # and load config from config.json
-        # ...
+		# Load template image based on doc_type from your database
+		# and load config from config.json
+		# ...
 		template, config_data = load_template_and_config(doc_type)
 
 		if template is not None and config_data is not None:
@@ -136,7 +145,7 @@ async def ocr_document(request: Request):
 			# Perform OCR
 			# ...
 
-        # Return the OCR results
-        return response.json({"success": True, "results": ocr_results})
-    except Exception as e:
-        return response.json({"success": False, "error": str(e)})
+		# Return the OCR results
+		return response.json({"success": True, "results": ocr_results})
+	except Exception as e:
+		return response.json({"success": False, "error": str(e)})
