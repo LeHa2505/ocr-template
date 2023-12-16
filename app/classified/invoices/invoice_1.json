@@ -1,0 +1,21 @@
+[
+    {"id": "from_name", "bbox": [67, 78, 881, 107], "filter_keywords": ["from_name"]},
+    {"id": "from_address", "bbox": [66, 111, 882, 158], "filter_keywords": ["from_address"]},
+    {"id": "from_phone", "bbox": [140, 161, 383, 187], "filter_keywords": ["from_phone"]},
+    {"id": "from_fax", "bbox": [584, 161, 883, 189], "filter_keywords": ["from_fax"]},
+    {"id": "title", "bbox": [73, 213, 833, 252], "filter_keywords": ["title"]},
+    {"id": "no", "bbox": [679, 264, 890, 289], "filter_keywords": ["no"]},
+    {"id": "date", "bbox": [680, 292, 887, 313], "filter_keywords": ["date"]},
+    {"id": "consignee", "bbox": [248, 324, 897, 353], "filter_keywords": ["consignee"]},
+    {"id": "notify_party_name", "bbox": [247, 356, 902, 378], "filter_keywords": ["notify_party_name"]},
+    {"id": "notify_party_address", "bbox": [154, 381, 902, 402], "filter_keywords": ["notify_party_address"]},
+    {"id": "notify_party_phone", "bbox": [264, 401, 462, 423], "filter_keywords": ["notify_party_phone"]},
+    {"id": "notify_party_fax", "bbox": [567, 400, 862, 424], "filter_keywords": ["notify_party_fax"]},
+    {"id": "lc_no", "bbox": [263, 420, 580, 445], "filter_keywords": ["lc_no"]},
+    {"id": "transport", "bbox": [69, 443, 256, 466], "filter_keywords": ["transport"]},
+    {"id": "transport_no", "bbox": [264, 442, 899, 465], "filter_keywords": ["transport_no"]},
+    {"id": "bill_no", "bbox": [267, 464, 802, 485], "filter_keywords": ["bill_no"]},
+    {"id": "cont_seal_no", "bbox": [263, 485, 818, 507], "filter_keywords": ["cont_seal_no"]},
+    {"id": "from", "bbox": [251, 520, 893, 545], "filter_keywords": ["from"]},
+    {"id": "to", "bbox": [251, 544, 898, 568], "filter_keywords": ["to"]}
+]
