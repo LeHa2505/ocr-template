@@ -21,11 +21,6 @@ my_bp = Blueprint('my_blueprint')
 def my_bp_func(request):
 	return response.text('My First Blueprint')
 
-# @my_bp.route('/ocr/<string:doc_type>/<string:doc_format>', methods={'GET'})
-# def ocr_document(doc_type, doc_fomat) 
-	
-# 	return jsonify(response_data)
-
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
 	try:
@@ -34,9 +29,6 @@ async def ocr_document(request: Request):
 		doc_type = data.get('type')
 		image_url = data.get('image_url')
 
-		# Load template image based on doc_type from your database
-		# and load config from config.json
-		# ...
 		template, config_data = load_template_and_config(doc_type)
 
 		if template is not None and config_data is not None:
