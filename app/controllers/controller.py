@@ -68,6 +68,7 @@ def my_bp_func(request):
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
 	try:
+		custom_config = "-c page_separator=''"
 		data = request.json
 		doc_type = data.get('type')
 		image_url = data.get('image_url')
@@ -95,8 +96,11 @@ async def ocr_document(request: Request):
 				# roi = aligned[y:y+h, x:x+w]
 				roi = aligned[y: h, x: w]
 
-				rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-				text = pytesseract.image_to_string(rgb)
+				rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+				# image = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
+				# print(pytesseract.image_to_string(rgb, config='--psm 7')) #use psm 7 since it is a single line
+				cv2.imwrite(loc['id'] + '.jpg', rgb)
+				text = pytesseract.image_to_string(rgb, config='--psm 7')
 				
 				for line in text.split("\n"):
 					if len(line) == 0:
@@ -151,7 +155,7 @@ async def ocr_document(request: Request):
 		new_results = {}
 		# Lặp qua mỗi cặp key-value trong dictionary cũ
 		for key, value in results.items():
-			new_results[key] = value[0]
+			new_results[key] = value[0].strip()
 		return response.json({"success": True, "results": new_results})
 	except Exception as e:
 		return response.json({"success": False, "error": str(e)})
