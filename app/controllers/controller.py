@@ -56,7 +56,10 @@ async def ocr_document(request: Request):
 			new_results[key] = value[0].strip()
 		# concatenate 2 json
 		new_results = json.loads(json.dumps(new_results, indent=2))
-		table_data = json.loads(table_data[0])
+		total_table_data = {}
+		for item in table_data:
+			total_table_data.update(json.loads(item))
+		table_data = total_table_data
 		new_results.update(table_data)
 		# new_results = json.dumps(new_results)
 		
