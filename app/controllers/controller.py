@@ -13,7 +13,12 @@ import cv2
 import json
 import os
 import imutils
+from ExtractTable import ExtractTable
+import json
 
+# extract table api key
+api_key = 'lEMRZnLQ9PNgXm5dh2LW2sFEygVtkTmIrY10CVnT'
+et_sess = ExtractTable(api_key)
 
 my_bp = Blueprint('my_blueprint')
 
@@ -33,11 +38,13 @@ async def ocr_document(request: Request):
 		template, config_data = load_template_and_config(doc_type, num_type)
 
 		if template is not None and config_data is not None:
-			image = download_image_from_url(image_url)
+			image = download_image_from_url(image_url, page_number=0)
 			aligned = align_images(image, template)
 			results = ocr_image(aligned, template, OCR_Locations=config_data)
 			visualize_ocr(results, image, aligned)
 
+		# call extract table api
+		table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
 
 		# Return the OCR results
 		# Tạo dictionary mới
@@ -45,6 +52,12 @@ async def ocr_document(request: Request):
 		# Lặp qua mỗi cặp key-value trong dictionary cũ
 		for key, value in results.items():
 			new_results[key] = value[0].strip()
+		# concatenate 2 json
+		new_results = json.loads(new_results)
+		table_data = json.loads(table_data)
+		new_results.update(table_data)
+		new_results = json.dumps(new_results, indent=2)
+		
 		return response.json({"success": True, "results": new_results})
 	except Exception as e:
 		return response.json({"success": False, "error": str(e)})

@@ -3,3 +3,4 @@ tesseract-ocr==5.3.3
 pytesseract==0.3.10
 PyMuPDF
 Pillow
+ExtractTable
