@@ -1,2 +1,8 @@
+numpy==1.23.5
+opencv-python==4.8.0.76
+imutils==0.5.4
+argparse==1.4.0
+Pillow==9.4.0
+requests==2.31.0
 sanic==23.6.0
 pytesseract==0.3.10
