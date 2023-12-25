@@ -1,0 +1,9 @@
+[
+    {"id": "file_name", "bbox": [198,27,400,57], "filter_keywords": ["file_name"]},
+    {"id": "no", "bbox": [54,55,168,76], "filter_keywords": ["no"]},
+    {"id": "price", "bbox": [57,80,183,96], "filter_keywords": ["price"]},
+    {"id": "no", "bbox": [679, 264, 890, 289], "filter_keywords": ["no"]},
+    {"id": "date", "bbox": [680, 292, 887, 313], "filter_keywords": ["date"]},
+    {"id": "content", "bbox": [56,102,556,223], "filter_keywords": ["content"]},
+    {"id": "to", "bbox": [55,227,281,283], "filter_keywords": ["to"]}
+]

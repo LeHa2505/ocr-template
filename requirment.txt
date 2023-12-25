@@ -6,3 +6,6 @@ Pillow==9.4.0
 requests==2.31.0
 sanic==23.6.0
 pytesseract==0.3.10
+PyMuPDF
+ExtractTable
+fitz
