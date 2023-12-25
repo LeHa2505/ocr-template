@@ -10,7 +10,7 @@ import imutils
 import fitz
 from IPython.display import display, Image as IPImage
 
-def download_image_from_pdf_url(url, page_number=0):
+def download_image_from_url(url, page_number=0):
     try:
         # Open the URL and read the PDF file
         pdf_response = urllib.request.urlopen(url)

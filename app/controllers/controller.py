@@ -17,7 +17,7 @@ from ExtractTable import ExtractTable
 import json
 
 # extract table api key
-api_key = 'lEMRZnLQ9PNgXm5dh2LW2sFEygVtkTmIrY10CVnT'
+api_key = 'icTf6xSjFqcSnWUNp2CsZLyeejhiecLuapR3nYIO'
 et_sess = ExtractTable(api_key)
 
 my_bp = Blueprint('my_blueprint')
@@ -29,18 +29,21 @@ def my_bp_func(request):
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
 	try:
+		print("hể")
 		# custom_config = "-c page_separator=''"
 		data = request.json
 		doc_type = data.get('doc_type')
 		num_type = data.get('type')
 		image_url = data.get('image_url')
-
+		# print("1")
 		template, config_data = load_template_and_config(doc_type, num_type)
-
+		# print("2")
 		if template is not None and config_data is not None:
 			image = download_image_from_url(image_url, page_number=0)
 			aligned = align_images(image, template)
+			# print("22222")
 			results = ocr_image(aligned, template, OCR_Locations=config_data)
+			# print("5")
 			visualize_ocr(results, image, aligned)
 
 		# call extract table api
@@ -53,8 +56,9 @@ async def ocr_document(request: Request):
 		for key, value in results.items():
 			new_results[key] = value[0].strip()
 		# concatenate 2 json
-		new_results = json.loads(new_results)
-		table_data = json.loads(table_data)
+		print("1: ", table_data, new_results)
+		new_results = json.loads(json.dumps(new_results, indent=2))
+		table_data = json.loads(table_data[0])
 		new_results.update(table_data)
 		new_results = json.dumps(new_results, indent=2)
 		
