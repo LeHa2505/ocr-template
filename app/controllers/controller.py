@@ -26,10 +26,11 @@ async def ocr_document(request: Request):
 	try:
 		# custom_config = "-c page_separator=''"
 		data = request.json
-		doc_type = data.get('type')
+		doc_type = data.get('doc_type')
+		num_type = data.get('type')
 		image_url = data.get('image_url')
 
-		template, config_data = load_template_and_config(doc_type)
+		template, config_data = load_template_and_config(doc_type, num_type)
 
 		if template is not None and config_data is not None:
 			image = download_image_from_url(image_url)
