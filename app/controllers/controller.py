@@ -29,7 +29,6 @@ def my_bp_func(request):
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
 	try:
-		print("hể")
 		# custom_config = "-c page_separator=''"
 		data = request.json
 		doc_type = data.get('doc_type')
@@ -56,11 +55,10 @@ async def ocr_document(request: Request):
 		for key, value in results.items():
 			new_results[key] = value[0].strip()
 		# concatenate 2 json
-		print("1: ", table_data, new_results)
 		new_results = json.loads(json.dumps(new_results, indent=2))
 		table_data = json.loads(table_data[0])
 		new_results.update(table_data)
-		new_results = json.dumps(new_results, indent=2)
+		# new_results = json.dumps(new_results)
 		
 		return response.json({"success": True, "results": new_results})
 	except Exception as e:
