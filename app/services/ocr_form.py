@@ -7,7 +7,6 @@ import imutils
 import cv2
 import json
 from numpy import asarray
-import pytesseract
 import numpy as np
 import os
 

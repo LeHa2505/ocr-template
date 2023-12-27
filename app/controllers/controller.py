@@ -17,7 +17,7 @@ from ExtractTable import ExtractTable
 import json
 
 # extract table api key
-api_key = 'icTf6xSjFqcSnWUNp2CsZLyeejhiecLuapR3nYIO'
+api_key = 'o6KcBYLJu2MAtW3g5cyhZciCB9PmrRhjPq00Tx2j'
 et_sess = ExtractTable(api_key)
 
 my_bp = Blueprint('my_blueprint')
@@ -56,9 +56,10 @@ async def ocr_document(request: Request):
 			new_results[key] = value[0].strip()
 		# concatenate 2 json
 		new_results = json.loads(json.dumps(new_results, indent=2))
-		total_table_data = {}
+
+		total_table_data = {"table": {}}
 		for item in table_data:
-			total_table_data.update(json.loads(item))
+			total_table_data["table"].update(json.loads(item))
 		table_data = total_table_data
 		new_results.update(table_data)
 		# new_results = json.dumps(new_results)
