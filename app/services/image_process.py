@@ -63,7 +63,7 @@ def load_template_and_config(doc_type, num_type):
 				config_folder = f'app/classified/bill_of_exchange'
 
 				# Load template image
-				template_image_path = os.path.join(template_folder, label + '.png')
+				template_image_path = os.path.join(template_folder, label + '.jpg')
 				template_image = cv2.imread(template_image_path)
 
 				# Load config from JSON file

@@ -2,6 +2,5 @@
     {"id": "no", "bbox": [120,57,166,75], "filter_keywords": ["no"]},
     {"id": "price", "bbox": [89,80,184,97], "filter_keywords": ["price"]},
     {"id": "date", "bbox": [453,78,541,95], "filter_keywords": ["date"]},
-    {"id": "content", "bbox": [58,104,559,223], "filter_keywords": ["content"]},
-    {"id": "to", "bbox": [61,282,246,282,247,229,85,230,85,246,61,246], "filter_keywords": ["to"]}
+    {"id": "content", "bbox": [58,104,559,223], "filter_keywords": ["content"]}
 ]
