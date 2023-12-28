@@ -3,7 +3,7 @@ from sanic import response
 from sanic import Blueprint
 from sanic.request import Request
 from app.services.align_images import align_images
-from app.services.image_process import download_image_from_url, load_template_and_config
+from app.services.image_process import download_pdf_from_url, convert_pdf_to_image, load_template_and_config
 from app.services.text_process import cleanup_text
 from app.services.ocr_form import ocr_image, visualize_ocr
 from numpy import asarray
@@ -38,7 +38,8 @@ async def ocr_document(request: Request):
 		template, config_data = load_template_and_config(doc_type, num_type)
 		# print("2")
 		if template is not None and config_data is not None:
-			image = download_image_from_url(image_url, page_number=0)
+			pdf_document = download_pdf_from_url(image_url)
+			image = convert_pdf_to_image(pdf_document, page_number=0)
 			aligned = align_images(image, template)
 			# print("22222")
 			results = ocr_image(aligned, template, OCR_Locations=config_data)

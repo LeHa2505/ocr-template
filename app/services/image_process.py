@@ -1,21 +1,23 @@
-import requests
-from io import BytesIO
 from PIL import Image
 import urllib
 import numpy as np
 import cv2
 import json
 import os
-import imutils
 import fitz
-from IPython.display import display, Image as IPImage
-
-def download_image_from_url(url, page_number=0):
+from PIL import Image
+def download_pdf_from_url(url):
     try:
         # Open the URL and read the PDF file
         pdf_response = urllib.request.urlopen(url)
         pdf_document = fitz.open(stream=pdf_response.read(), filetype="pdf")
-        
+        return pdf_document
+    except Exception as e:
+        print(f"Error downloading PDF: {e}")
+        return None
+
+def convert_pdf_to_image(pdf_document, page_number=0):
+    try:
         # Select the desired page from the PDF
         pdf_page = pdf_document[page_number]
         
@@ -29,10 +31,8 @@ def download_image_from_url(url, page_number=0):
         # Convert Pillow image to OpenCV image
         img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
         
-        # Return the converted image
         return img
     except Exception as e:
-        # If an error occurs during the process, print an error message and return None
         print(f"Error converting PDF to image: {e}")
         return None
 
