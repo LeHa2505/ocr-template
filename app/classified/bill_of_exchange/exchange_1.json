@@ -1,6 +1,14 @@
 [
-    {"id": "no", "bbox": [120,57,166,75], "filter_keywords": ["no"]},
-    {"id": "price", "bbox": [89,80,184,97], "filter_keywords": ["price"]},
-    {"id": "date", "bbox": [453,78,541,95], "filter_keywords": ["date"]},
-    {"id": "content", "bbox": [58,104,559,223], "filter_keywords": ["content"]}
+    {"id": "no", "bbox": [123,58,164,74], "filter_keywords": ["no"]},
+    {"id": "price", "bbox": [91,79,184,96], "filter_keywords": ["price"]},
+    {"id": "date", "bbox": [453,82,539,95], "filter_keywords": ["date"]},
+    {"id": "content", "bbox": [59,107,555,123], "filter_keywords": ["content"]},
+    {"id": "content", "bbox": [60,125,552,141], "filter_keywords": ["content"]},
+    {"id": "content", "bbox": [59,143,553,156], "filter_keywords": ["content"]},
+    {"id": "content", "bbox": [59,158,556,175], "filter_keywords": ["content"]},
+    {"id": "content", "bbox": [58,186,557,200], "filter_keywords": ["content"]},
+    {"id": "content", "bbox": [59,204,551,220], "filter_keywords": ["content"]},
+    {"id": "to", "bbox": [83,229,281,245], "filter_keywords": ["content"]},
+    {"id": "to", "bbox": [61,247,279,262], "filter_keywords": ["content"]},
+    {"id": "to", "bbox": [60,264,278,279], "filter_keywords": ["content"]}
 ]

@@ -18,7 +18,6 @@ def ocr_image(aligned, template, OCR_Locations):
 		bbox = loc["bbox"]
 		(x, y, w, h) = bbox
 		roi = aligned[y: h, x: w]
-
 		rgb = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 		# image = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
 		# cv2.imwrite(loc['id'] + '.jpg', rgb)
