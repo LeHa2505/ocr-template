@@ -5,7 +5,6 @@ import cv2
 import json
 import os
 import fitz
-from PIL import Image
 def download_pdf_from_url(url):
     try:
         # Open the URL and read the PDF file
@@ -22,12 +21,13 @@ def convert_pdf_to_image(pdf_document, page_number=0):
         pdf_page = pdf_document[page_number]
         
         # Get the size of the PDF page in pixels using the 'rect' attribute
-        rect = pdf_page.rect
-        width, height = int(rect.width), int(rect.height)
+        # rect = pdf_page.rect
+        # width, height = int(rect.width), int(rect.height)
         
-        # Convert the PDF page to an image using Pillow (PIL)
-        pil_image = Image.frombytes("RGB", (width, height), pdf_page.get_pixmap().samples)
-        
+        # # Convert the PDF page to an image using Pillow (PIL)
+        # pil_image = Image.frombytes("RGB", (width, height), pdf_page.get_pixmap().samples)
+        pixmap = pdf_page.get_pixmap()
+        pil_image = Image.frombytes("RGB", [pixmap.width, pixmap.height], pixmap.samples)
         # Convert Pillow image to OpenCV image
         img = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
         

@@ -47,8 +47,8 @@ async def ocr_document(request: Request):
 			visualize_ocr(results, image, aligned)
 
 		# call extract table api
-		table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
-
+		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
+		table_data = {}
 		# Return the OCR results
 		# Tạo dictionary mới
 		new_results = {}
@@ -56,15 +56,15 @@ async def ocr_document(request: Request):
 		for key, value in results.items():
 			new_results[key] = value[0].strip()
 		# concatenate 2 json
-		new_results = json.loads(json.dumps(new_results, indent=2))
+		# new_results = json.loads(json.dumps(new_results, indent=2))
 
-		total_table_data = {"table": {}}
-		for item in table_data:
-			total_table_data["table"].update(json.loads(item))
-		table_data = total_table_data
-		new_results.update(table_data)
+		# total_table_data = {"table": {}}
+		# for item in table_data:
+		# 	total_table_data["table"].update(json.loads(item))
+		# table_data = total_table_data
+		# new_results.update(table_data)
 		# new_results = json.dumps(new_results)
 		
-		return response.json({"success": True, "results": new_results})
+		return response.json({"results": {"table": table_data, **new_results}})
 	except Exception as e:
 		return response.json({"success": False, "error": str(e)})
