@@ -17,7 +17,7 @@ from ExtractTable import ExtractTable
 import json
 
 # extract table api key
-api_key = 'o6KcBYLJu2MAtW3g5cyhZciCB9PmrRhjPq00Tx2j'
+api_key = '0V2V7wCKiEOYfiFKR2k46RPf0chELP3pmnQwXi6r'
 et_sess = ExtractTable(api_key)
 
 my_bp = Blueprint('my_blueprint')
@@ -47,8 +47,8 @@ async def ocr_document(request: Request):
 			visualize_ocr(results, image, aligned)
 
 		# call extract table api
-		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
-		table_data = {}
+		table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
+		# table_data = {}
 		# Return the OCR results
 		# Tạo dictionary mới
 		new_results = {}
