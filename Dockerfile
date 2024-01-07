@@ -13,7 +13,7 @@ RUN echo "conda activate name_env" >> ~/.bashrc
 # Activate conda environment and install dependencies
 SHELL ["conda", "run", "-n", "name_env", "/bin/bash", "-c"]
 COPY . /app
-RUN pip install -r requirment.txt
+RUN pip install -r requirement.txt
 
 # Make port 8089 available to the world outside this container
 EXPOSE 8089
