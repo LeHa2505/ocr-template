@@ -16,7 +16,7 @@ COPY . /app
 RUN pip install -r requirement.txt
 
 # Make port 8089 available to the world outside this container
-EXPOSE 8089
+EXPOSE 8000
 
 # Run server.py when the container launches
 ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "name_env", "python", "server.py"]
