@@ -6,7 +6,7 @@ from app.controllers.controller import my_bp
 from sanic_cors import CORS, cross_origin
 
 app = Sanic("My_First_Sanic_App")
-CORS(app)
+# CORS(app)
 
 # registering route defined by blueprint
 app.blueprint(my_bp)
