@@ -17,7 +17,7 @@ from ExtractTable import ExtractTable
 import json
 
 # extract table api key
-api_key = '0V2V7wCKiEOYfiFKR2k46RPf0chELP3pmnQwXi6r'
+api_key = 'a2LhQLQecTvdGrXtbwvsxv6Sft9nL9q9LNNYiSGP'
 et_sess = ExtractTable(api_key)
 
 my_bp = Blueprint('my_blueprint')
