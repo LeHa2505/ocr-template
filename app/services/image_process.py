@@ -18,7 +18,8 @@ def download_pdf_from_url(url):
 def convert_pdf_to_image(pdf_document, page_number=0):
     try:
         # Select the desired page from the PDF
-        pdf_page = pdf_document[page_number]
+        pdf_file = fitz.open(stream=pdf_document, filetype="pdf")
+        pdf_page = pdf_file[page_number]
         
         # Get the size of the PDF page in pixels using the 'rect' attribute
         # rect = pdf_page.rect
@@ -37,40 +38,40 @@ def convert_pdf_to_image(pdf_document, page_number=0):
         return None
 
 def load_template_and_config(doc_type):
-	try:
-		if doc_type == "invoice":
-			label = 'invoice'
-			template_folder = f'app/templates/invoices'
-			config_folder = f'app/classified/invoices'
+    try:
+        if doc_type == "invoice":
+            label = 'invoice'
+            template_folder = f'app/templates/invoices'
+            config_folder = f'app/classified/invoices'
 
-			# Load template image
-			template_image_path = os.path.join(template_folder, label + '.png')
-			template_image = cv2.imread(template_image_path)
+            # Load template image
+            template_image_path = os.path.join(template_folder, label + '.png')
+            template_image = cv2.imread(template_image_path)
 
-			# Load config from JSON file
-			config_file_path = os.path.join(config_folder, label + '.json')
-			with open(config_file_path, 'r') as config_file:
-				config_data = json.load(config_file)
+            # Load config from JSON file
+            config_file_path = os.path.join(config_folder, label + '.json')
+            with open(config_file_path, 'r') as config_file:
+                config_data = json.load(config_file)
 
-			return template_image, config_data
+            return template_image, config_data
 
-		# Handle other doc_types if needed
-		if doc_type == "bill_of_exchange":
-			label = 'exchange'
-			template_folder = f'app/templates/bill_of_exchange'
-			config_folder = f'app/classified/bill_of_exchange'
+        # Handle other doc_types if needed
+        if doc_type == "bill_of_exchange":
+            label = 'exchange'
+            template_folder = f'app/templates/bill_of_exchange'
+            config_folder = f'app/classified/bill_of_exchange'
 
-			# Load template image
-			template_image_path = os.path.join(template_folder, label + '.jpg')
-			template_image = cv2.imread(template_image_path)
+            # Load template image
+            template_image_path = os.path.join(template_folder, label + '.jpg')
+            template_image = cv2.imread(template_image_path)
 
-			# Load config from JSON file
-			config_file_path = os.path.join(config_folder, label + '.json')
-			with open(config_file_path, 'r') as config_file:
-				config_data = json.load(config_file)
+            # Load config from JSON file
+            config_file_path = os.path.join(config_folder, label + '.json')
+            with open(config_file_path, 'r') as config_file:
+                config_data = json.load(config_file)
 
-			return template_image, config_data
+            return template_image, config_data
 
-	except Exception as e:
-		print(f"Error loading template and config: {e}")
-		return None, None
+    except Exception as e:
+        print(f"Error loading template and config: {e}")
+        return None, None

@@ -15,6 +15,8 @@ import os
 import imutils
 from ExtractTable import ExtractTable
 import json
+from io import BytesIO
+from PIL import Image
 
 # extract table api key
 api_key = 'a2LhQLQecTvdGrXtbwvsxv6Sft9nL9q9LNNYiSGP'
@@ -30,21 +32,28 @@ def my_bp_func(request):
 async def ocr_document(request: Request):
 	try:
 		# custom_config = "-c page_separator=''"
-		data = request.json
+		# data = request.json
+		data = request.form
 		doc_type = data.get('doc_type')
-		image_url = data.get('image_url')
-		# print("1")
+		# print('doc_type: ', doc_type)
+		# image_url = data.get('image_url')
+		file = request.files.get('file')
+		file_content = file.body
+		file_extension = os.path.splitext(file.name)[-1].lower()
+		if file_extension == '.pdf':
+			image = convert_pdf_to_image(file_content, page_number=0)
+		elif file_extension in ['.png', '.jpg', '.jpeg', '.bmp']:
+			image = Image.open(BytesIO(file_content))
+		else:
+			return response.json({{"success": False, "error": "Unsupported file type. Only PDF and image files are supported."}})
+		image_np = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 		template, config_data = load_template_and_config(doc_type)
-		print('config_data: ', config_data)
-		# print("2")
 		if template is not None and config_data is not None:
-			pdf_document = download_pdf_from_url(image_url)
-			image = convert_pdf_to_image(pdf_document, page_number=0)
-			aligned = align_images(image, template)
-			# print("22222")
+			# pdf_document = download_pdf_from_url(image_url)
+			# image = convert_pdf_to_image(pdf_document, page_number=0)
+			aligned = align_images(image_np, template)
 			results = ocr_image(aligned, template, OCR_Locations=config_data)
-			# print("5")
-			visualize_ocr(results, image, aligned)
+			visualize_ocr(results, image_np, aligned)		
 
 		# call extract table api
 		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
@@ -55,15 +64,6 @@ async def ocr_document(request: Request):
 		# Lặp qua mỗi cặp key-value trong dictionary cũ
 		for key, value in results.items():
 			new_results[key] = value[0].strip()
-		# concatenate 2 json
-		# new_results = json.loads(json.dumps(new_results, indent=2))
-
-		# total_table_data = {"table": {}}
-		# for item in table_data:
-		# 	total_table_data["table"].update(json.loads(item))
-		# table_data = total_table_data
-		# new_results.update(table_data)
-		# new_results = json.dumps(new_results)
 		
 		return response.json({"results": {"table": table_data, **new_results}})
 	except Exception as e:
