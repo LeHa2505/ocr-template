@@ -32,10 +32,10 @@ async def ocr_document(request: Request):
 		# custom_config = "-c page_separator=''"
 		data = request.json
 		doc_type = data.get('doc_type')
-		num_type = data.get('type')
 		image_url = data.get('image_url')
 		# print("1")
-		template, config_data = load_template_and_config(doc_type, num_type)
+		template, config_data = load_template_and_config(doc_type)
+		print('config_data: ', config_data)
 		# print("2")
 		if template is not None and config_data is not None:
 			pdf_document = download_pdf_from_url(image_url)
@@ -47,8 +47,8 @@ async def ocr_document(request: Request):
 			visualize_ocr(results, image, aligned)
 
 		# call extract table api
-		table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
-		# table_data = {}
+		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
+		table_data = {}
 		# Return the OCR results
 		# Tạo dictionary mới
 		new_results = {}
