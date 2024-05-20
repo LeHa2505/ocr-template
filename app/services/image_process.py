@@ -18,8 +18,7 @@ def download_pdf_from_url(url):
 def convert_pdf_to_image(pdf_document, page_number=0):
     try:
         # Select the desired page from the PDF
-        pdf_file = fitz.open(stream=pdf_document, filetype="pdf")
-        pdf_page = pdf_file[page_number]
+        pdf_page = pdf_document[page_number]
         
         # Get the size of the PDF page in pixels using the 'rect' attribute
         # rect = pdf_page.rect
