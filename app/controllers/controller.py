@@ -47,8 +47,8 @@ async def ocr_document(request: Request):
 			visualize_ocr(results, image, aligned)
 
 		# call extract table api
-		table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
-		# table_data = {}
+		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
+		table_data = {}
 		# Return the OCR results
 		# Tạo dictionary mới
 		new_results = {}
