@@ -1,0 +1,57 @@
+[
+  {
+    "id": "seller",
+    "bbox": [1181, 398, 302, 266],
+    "filter_keywords": ["seller"]
+  },
+  {
+    "id": "delivery_for",
+    "bbox": [306, 409, 1178, 522],
+    "filter_keywords": ["delivery_for"]
+  },
+  {
+    "id": "delivery_from",
+    "bbox": [303, 538, 1180, 569],
+    "filter_keywords": ["delivery_from"]
+  },
+  {
+    "id": "destination",
+    "bbox": [302, 573, 1181, 603],
+    "filter_keywords": ["destination"]
+  },
+  {
+    "id": "vessel",
+    "bbox": [300, 608, 1179, 634],
+    "filter_keywords": ["vessel"]
+  },
+  {
+    "id": "lifting_date",
+    "bbox": [300, 641, 1180, 668],
+    "filter_keywords": ["lifting_date"]
+  },
+  {
+    "id": "commodity",
+    "bbox": [224, 832, 522, 858],
+    "filter_keywords": ["commodity"]
+  },
+  {
+    "id": "price_term",
+    "bbox": [227, 861, 1190, 887],
+    "filter_keywords": ["price_term"]
+  },
+  {
+    "id": "quantity",
+    "bbox": [284, 890, 1187, 914],
+    "filter_keywords": ["quantity"]
+  },
+  {
+    "id": "total_amount",
+    "bbox": [262, 917, 1197, 943],
+    "filter_keywords": ["total_amount"]
+  },
+  {
+    "id": "origin",
+    "bbox": [156, 946, 1189, 970],
+    "filter_keywords": ["origin"]
+  }
+]

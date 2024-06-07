@@ -70,6 +70,18 @@ def load_template_and_config(doc_type):
                 config_data = json.load(config_file)
 
             return template_image, config_data
+        
+        if doc_type == "package_list":
+            label = 'package_list'
+            template_folder = f'app/templates/package_list'
+            config_folder = f'app/classified/package_list'
+            template_image_path = os.path.join(template_folder, label + '.jpg')
+            template_image = cv2.imread(template_image_path)
+            config_file_path = os.path.join(config_folder, label + '.json')
+            with open(config_file_path, 'r') as config_file:
+                config_data = json.load(config_file)
+
+            return template_image, config_data
 
     except Exception as e:
         print(f"Error loading template and config: {e}")
