@@ -24,7 +24,7 @@ my_bp = Blueprint('my_blueprint')
 
 @my_bp.route('/my_bp')
 def my_bp_func(request):
-	return response.text('My First Blueprint')
+    return response.text('My First Blueprint')
 
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
@@ -41,16 +41,16 @@ async def ocr_document(request: Request):
 			results = ocr_image(aligned, template, OCR_Locations=config_data)
 			visualize_ocr(results, image, aligned)
 
-		# call extract table api
-		# table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
-		table_data = {}
-		# Return the OCR results
-		# Tạo dictionary mới
-		new_results = {}
-		# Lặp qua mỗi cặp key-value trong dictionary cũ
-		for key, value in results.items():
-			new_results[key] = value[0].strip()
-		
-		return response.json({"results": {"table": table_data, **new_results}})
-	except Exception as e:
-		return response.json({"success": False, "error": str(e)})
+        # call extract table api
+        # table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
+        table_data = {}
+        # Return the OCR results
+        # Tạo dictionary mới
+        new_results = {}
+        # Lặp qua mỗi cặp key-value trong dictionary cũ
+        for key, value in results.items():
+            new_results[key] = value[0].strip()
+        
+        return response.json({"results": {"table": table_data, **new_results}})
+    except Exception as e:
+        return response.json({"success": False, "error": str(e)})

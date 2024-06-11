@@ -8,6 +8,7 @@ def align_images(image, template, maxFeatures=500, keepPercent=0.2, debug=False)
     templateGray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
     
     orb = cv2.ORB_create(maxFeatures)
+    cv2.imwrite("check1.jpg", imutils.resize(imgGray))
     (kpsA, descsA) = orb.detectAndCompute(imgGray, None)
     (kpsB, descsB) = orb.detectAndCompute(templateGray, None)
     
