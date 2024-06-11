@@ -1,17 +1,17 @@
 [
   {
     "id": "seller",
-    "bbox": [1181, 398, 302, 266],
+    "bbox": [295, 232, 705, 400],
     "filter_keywords": ["seller"]
   },
   {
     "id": "delivery_for",
-    "bbox": [306, 409, 1178, 522],
+    "bbox": [309, 409, 672, 471],
     "filter_keywords": ["delivery_for"]
   },
   {
     "id": "delivery_from",
-    "bbox": [303, 538, 1180, 569],
+    "bbox": [304, 540, 571, 566],
     "filter_keywords": ["delivery_from"]
   },
   {
