@@ -28,18 +28,18 @@ def my_bp_func(request):
 
 @my_bp.route('/ocr_document', methods=['POST'])
 async def ocr_document(request: Request):
-	try:
-		# custom_config = "-c page_separator=''"
-		data = request.json
-		doc_type = data.get('doc_type')
-		image_url = data.get('image_url')
-		template, config_data = load_template_and_config(doc_type)
-		if template is not None and config_data is not None:
-			pdf_document = download_pdf_from_url(image_url)
-			image = convert_pdf_to_image(pdf_document, page_number=0)
-			aligned = align_images(image, template)
-			results = ocr_image(aligned, template, OCR_Locations=config_data)
-			visualize_ocr(results, image, aligned)
+    try:
+        # custom_config = "-c page_separator=''"
+        data = request.json
+        doc_type = data.get('doc_type')
+        image_url = data.get('image_url')
+        template, config_data = load_template_and_config(doc_type)
+        if template is not None and config_data is not None:
+            pdf_document = download_pdf_from_url(image_url)
+            image = convert_pdf_to_image(pdf_document, page_number=0)
+            aligned = align_images(image, template)
+            results = ocr_image(aligned, template, OCR_Locations=config_data)
+            visualize_ocr(results, image, aligned)
 
         # call extract table api
         # table_data = et_sess.process_file(filepath=image_url, pages="all", output_format="json")
